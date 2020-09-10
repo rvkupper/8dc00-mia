@@ -18,6 +18,10 @@ The schedule is as follows:
 
 Since the practical sessions are scheduled immediately before or after the lectures, if you attend the lectures on-campus you might not have sufficient time to travel home for the guided self-study. The University is working on ensuring that there are sufficient number of safe workspaces on-campus so that you can log in from there.
 
+**Lecture schedule:**
+
+<img src="Lecture_schedule.png" width="600">
+
 ## Practical work (exercises and project work)
 
 The practical work will be done in groups. The groups will be formed in Canvas and you will also submit all your work there (check the Assignments section for the deadlines). Your are expected to do this work independently with the help of the teaching assistants during the guided self-study sessions (begeleide zelfstudie). During these sessions, you will be able to join a Microsoft Teams meeting of one of the teaching assistants (each assistant will have a unique link that you can find on Canvas). You can also post your questions in the Discussion section in Canvas at any time.
@@ -49,36 +53,58 @@ If you lack prior knowledge of the Python programming language, you can use the 
 
 # Lectures, exercises and projects
 
-* [Lecture slides: Course introduction](https://canvas.tue.nl/courses/15629/files/2557301?module_item_id=207896)
+* [Lecture slides: Course introduction](lectures/1_Course_introduction.pdf)
 
 ##  Medical image registration
 
 * Introduction to medical image registration
-  * [Lecture slides: Introduction to image registration; Geometrical transformations](https://canvas.tue.nl/courses/15629/files/2557302?module_item_id=207897)
+  * [Lecture slides: Introduction to image registration; Geometrical transformations](lectures/2_Introduction_to_image_registration_Geometrical_transformations.pdf)
   * [Explanation exercises](notebooks/registration_introduction.ipynb)
 
 * Geometrical transformations
-  * [Lecture slides: Introduction to image registration; Geometrical transformations](https://canvas.tue.nl/courses/15629/files/2557302?module_item_id=207897)
+  * [Lecture slides: Introduction to image registration; Geometrical transformations](lectures/2_Introduction_to_image_registration_Geometrical_transformations.pdf)
   * [Exercise 1](notebooks/registration_exercise_1.ipynb)
 
 * Image transformation and least squares fitting
-  * [Lecture slides: Point-based registration](https://canvas.tue.nl/courses/15629/files/2557303?module_item_id=207898)
+  * [Lecture slides: Point-based registration](lectures/3_Point_based_registration.pdf)
   * [Exercise 2](notebooks/registration_exercise_2.ipynb)
 
 * Image similarity metrics
-  * [Lecture slides: Intensity-based registration; Image similarity metrics](https://canvas.tue.nl/courses/15629/files/2557304?module_item_id=207899)
+  * [Lecture slides: Intensity-based registration; Image similarity metrics](lectures/4_Intensity_based_registration_Evaluation_metrics.pdf)
   * [Exercise 3](notebooks/registration_exercise_3.ipynb)
 
 * Towards intensity-based image registration
-  * [Lecture slides: Intensity-based registration; Image similarity metrics](https://canvas.tue.nl/courses/15629/files/2557304?module_item_id=207899)
+  * [Lecture slides: Intensity-based registration; Image similarity metrics](lectures/4_Intensity_based_registration_Evaluation_metrics.pdf)
   * [Exercise 4](notebooks/registration_exercise_4.ipynb)
 
 * [Project work](notebooks/registration_project.ipynb)
 
 
-## Computer-aided diagnosis
+## Computer-aided diagnosis 
 
- *(coming soon)* 
+* Introduction to computer-aided diagnosis, k-NN, decision trees		
+  * Lecture slides
+  * [Explanation exercises](notebooks/cad_introduction.ipynb)
+
+* Generalization and overfitting, linear regression
+  * Lecture slides
+  * [Exercise 1](notebooks/cad_exercise_1.ipynb)
+
+* Logistic regression, neural networks		
+  * Lecture slides
+  * [Exercise 2](notebooks/cad_exercise_2.ipynb)
+
+* Convolutional neural networks
+  * Lecture slides
+
+* Deep learning frameworks and applications		
+  * Lecture slides
+
+* Unsupervised machine learning		
+  * Lecture slides
+  * Optional exercises
+
+* Deep learning for deformable image registration		
 
 
 ## Self-study: Active shape models
