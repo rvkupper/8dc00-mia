@@ -48,6 +48,33 @@ def combining_transforms():
 
     #------------------------------------------------------------------#
     # TODO: Experiment with combining transformation matrices.
+    
+    X_t = reg.reflect(-1,1).dot(reg.rotate(np.pi/2)).dot(X)
+    X_u = reg.shear(2, 1).dot(reg.reflect(1,-1)).dot(X)
+    X_v = reg.reflect(1, -1).dot(reg.shear(2, 1)).dot(X)
+    X_w = reg.rotate(np.pi/2).dot(reg.shear(2, 1)).dot(X)
+    
+    fig = plt.figure(figsize=(12,5))
+    ax1 = fig.add_subplot(141, xlim=(-8,8), ylim=(-8,8))
+    ax2 = fig.add_subplot(142, xlim=(-8,8), ylim=(-8,8))
+    ax3 = fig.add_subplot(143, xlim=(-8,8), ylim=(-8,8))
+    ax4 = fig.add_subplot(144, xlim=(-8,8), ylim=(-8,8))
+    
+    util.plot_object(ax1, X_t)
+    util.plot_object(ax2, X_u)
+    util.plot_object(ax3, X_v)
+    util.plot_object(ax4, X_w)
+    
+    ax1.set_title('reflect, rotate')
+    ax2.set_title('shear, reflect')
+    ax3.set_title('reflect, shear')
+    ax4.set_title('rotate, shear')
+    
+    ax1.grid()
+    ax2.grid()
+    ax3.grid()
+    ax4.grid()
+    
     #------------------------------------------------------------------#
 
 
@@ -80,6 +107,11 @@ def arbitrary_rotation():
 
     #------------------------------------------------------------------#
     # TODO: Perform rotation of the test shape around the first vertex
+    
+    Xt = X[:,0]
+    
+    T = util.t2h(reg.rotate(np.pi/4), Xt).dot(util.t2h(reg.identity(), -Xt))
+    
     #------------------------------------------------------------------#
 
     X_rot = T.dot(Xh)
@@ -135,7 +167,7 @@ def image_transform_test():
 
 
 def ls_solve_test():
-
+    """TODO"""
     #------------------------------------------------------------------#
     # TODO: Test your implementation of the ls_solve definition
     #------------------------------------------------------------------#
