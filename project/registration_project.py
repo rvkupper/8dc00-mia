@@ -13,9 +13,10 @@ import registration_util as util
 from IPython.display import display, clear_output
 from time import time
 import sys
+import os
 
 ## new ##
-sys.path.append("../project")
+os.chdir('project')
 ## --- ##
 
 def chooseImage(filenumber, t1t2):
