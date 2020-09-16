@@ -235,9 +235,13 @@ def correlation_test():
 
     #------------------------------------------------------------------#
     # TODO: Implement a few more tests of the correlation definition
+    
+    C2 = reg.correlation(I, J)
+    print(C1, C2)
+    
     #------------------------------------------------------------------#
 
-    print('Test successful!')
+    # print('Test successful!')
 
 
 def mutual_information_test():
@@ -250,6 +254,17 @@ def mutual_information_test():
 
     #------------------------------------------------------------------#
     # TODO: Implement a few tests of the mutual_information definition
+    
+    print(MI1)
+    
+    I_ran1 = np.random.randint(255, size=(512, 512))
+    I_ran2 = np.random.randint(255, size=(512, 512))
+    
+    p2 = reg.joint_histogram(I_ran1, I_ran2)
+    MI2 = reg.mutual_information(p2) 
+    
+    print(MI2)
+    
     #------------------------------------------------------------------#
 
     print('Test successful!')
@@ -266,6 +281,9 @@ def mutual_information_e_test():
     p1 = reg.joint_histogram(I, I)
     MI1 = reg.mutual_information_e(p1)
     MI2 = reg.mutual_information(p1)
+    
+    print(MI1)
+    print(MI2)
     assert abs(MI1-MI2) < 10e-3, "Mutual information function with entropy is incorrectly implemented (difference with reference implementation test)"
 
     print('Test successful!')
