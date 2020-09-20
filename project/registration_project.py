@@ -21,7 +21,7 @@ os.chdir('project')
 
 def chooseImage(filenumber, t1t2):
     """
-    Chooses the right images according to the input
+    Choose the right images according to the input
     
     The inputs are:
     filenumber - indicates number of the image, one of ['1_1', '1_2', '1_3', '2_1', '2_2', '2_3', '3_1', '3_2', '3_3']
@@ -49,9 +49,9 @@ def chooseImage(filenumber, t1t2):
     
     return path_I, path_Im
 
-def pointBasedRegistration(filenumber='1_1',t1t2='t1'):
+def pointBasedRegistration(filenumber='3_3',t1t2='t1'):
     """
-    Performes point-based registration on two images
+    Perform point-based registration on two images
     This can be between T1-to-T1 registration or T2-to-T1 registration
     
     The inputs are:
@@ -109,7 +109,7 @@ def intensityBasedRegistration(affine=True, corr=True, iterations=250, mu=1e-3, 
     affine (default=True): A boolean that determines whether the affine or rigid method is used.
         True means the affine method is used, False means the rigid method is used.
     corr (default=True): A boolean that determines whether the similarity is calculated using correlation or mutual information.
-        True means that correlation is used, False mean that mutual information is used. If affine=False, correlation will automatically be used.
+        True means that correlation is used, False means that mutual information is used. If affine=False, correlation will automatically be used.
     iterations (default=250): An integer that determines the amount of times the gradient ascent is updated.
     mu (default=1e-3): A float that determines the learning rate of the gradient ascent.
 
@@ -210,10 +210,23 @@ def intensityBasedRegistration(affine=True, corr=True, iterations=250, mu=1e-3, 
     print("Final similarity: %f" %(S))
 
     #Shows final image and plot (required for non-jupyter python)
-    plt.show()        
+    # plt.show()       
+    filename = "../plaatjes/{}__{}__9e5__250it.png".format(t1t2, filenumber) 
+    plt.savefig(filename)
+    return S
 
 if(__name__ == "__main__"):
     #Test example of function
-
-    intensityBasedRegistration(True, False, 250, 9e-5, '3_3', 't2')
-    #pointBasedRegistration('t1','1_2')
+    S1_1 = intensityBasedRegistration(True, False, 250, 9e-5, '1_1', 't2')
+    S1_2 = intensityBasedRegistration(True, False, 250, 9e-5, '1_2', 't2')
+    S1_3 = intensityBasedRegistration(True, False, 250, 9e-5, '1_3', 't2')
+    S2_1 = intensityBasedRegistration(True, False, 250, 9e-5, '2_1', 't2')
+    S2_2 = intensityBasedRegistration(True, False, 250, 9e-5, '2_2', 't2')
+    S2_3 = intensityBasedRegistration(True, False, 250, 9e-5, '2_3', 't2')
+    S3_1 = intensityBasedRegistration(True, False, 250, 9e-5, '3_1', 't2')
+    S3_2 = intensityBasedRegistration(True, False, 250, 9e-5, '3_2', 't2')
+    S3_3 = intensityBasedRegistration(True, False, 250, 9e-5, '3_3', 't2')
+    # pointBasedRegistration('t1','1_2')
+    
+    print(S1_1, '\n', S1_2, '\n', S1_3, '\n', S2_1, '\n', S2_2, '\n', S2_3, '\n', S3_1, '\n', S3_2, '\n', S3_3)
+    
