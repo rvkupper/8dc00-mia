@@ -12,9 +12,10 @@ from math import sin, cos
 
 
 def identity():
-    # 2D identity matrix.
-    # Output:
-    # T - transformation matrix
+    """2D identity matrix.
+    Output:
+    T - transformation matrix
+    """
 
     T = np.eye(2)
 
@@ -22,11 +23,12 @@ def identity():
 
 
 def scale(sx, sy):
-    # 2D scaling matrix.
-    # Input:
-    # sx, sy - scaling parameters
-    # Output:
-    # T - transformation matrix
+    """2D scaling matrix.
+    Input:
+    sx, sy - scaling parameters
+    Output:
+    T - transformation matrix
+    """
 
     T = np.array([[sx,0],[0,sy]])
 
@@ -34,11 +36,12 @@ def scale(sx, sy):
 
 
 def rotate(phi):
-    # 2D rotation matrix.
-    # Input:
-    # phi - rotation angle
-    # Output:
-    # T - transformation matrix
+    """2D rotation matrix.
+    Input:
+    phi - rotation angle
+    Output:
+    T - transformation matrix
+    """
 
     #------------------------------------------------------------------#
     # TODO: Implement transformation matrix for rotation.
@@ -51,12 +54,13 @@ def rotate(phi):
 
 
 def shear(cx, cy):
-    # 2D shearing matrix.
-    # Input:
-    # cx - horizontal shear
-    # cy - vertical shear
-    # Output:
-    # T - transformation matrix
+    """2D shearing matrix.
+    Input:
+    cx - horizontal shear
+    cy - vertical shear
+    Output:
+    T - transformation matrix
+    """
 
     #------------------------------------------------------------------#
     # TODO: Implement transformation matrix for shearing
@@ -68,12 +72,13 @@ def shear(cx, cy):
 
 
 def reflect(rx, ry):
-    # 2D reflection matrix.
-    # Input:
-    # rx - horizontal reflection (must have value of -1 or 1)
-    # ry - vertical reflection (must have value of -1 or 1)
-    # Output:
-    # T - transformation matrix
+    """2D reflection matrix.
+    Input:
+    rx - horizontal reflection (must have value of -1 or 1)
+    ry - vertical reflection (must have value of -1 or 1)
+    Output:
+    T - transformation matrix
+    """
 
     allowed = [-1, 1]
     if rx not in allowed or ry not in allowed:
@@ -93,17 +98,18 @@ def reflect(rx, ry):
 
 
 def image_transform(I, Th,  output_shape=None):
-    # Image transformation by inverse mapping.
-    # Input:
-    # I - image to be transformed
-    # Th - homogeneous transformation matrix
-    # output_shape - size of the output image (default is same size as input)
-    # Output:
-    # It - transformed image
-	# Xt - remapped coordinates
-    # we want double precision for the interpolation, but we want the
-    # output to have the same data type as the input - so, we will
-    # convert to double and remember the original input type
+    """Image transformation by inverse mapping.
+    Input:
+    I - image to be transformed
+    Th - homogeneous transformation matrix
+    output_shape - size of the output image (default is same size as input)
+    Output:
+    It - transformed image
+	Xt - remapped coordinates
+    we want double precision for the interpolation, but we want the
+    output to have the same data type as the input - so, we will
+    convert to double and remember the original input type
+    """
 
     input_type = type(I);
 
@@ -138,13 +144,14 @@ def image_transform(I, Th,  output_shape=None):
 
 
 def ls_solve(A, b):
-    # Least-squares solution to a linear system of equations.
-    # Input:
-    # A - matrix of known coefficients
-    # b - vector of known constant term
-    # Output:
-    # w - least-squares solution to the system of equations
-    # E - squared error for the optimal solution
+    """Least-squares solution to a linear system of equations.
+    Input:
+    A - matrix of known coefficients
+    b - vector of known constant term
+    Output:
+    w - least-squares solution to the system of equations
+    E - squared error for the optimal solution
+    """
 
     #------------------------------------------------------------------#
     # TODO: Implement the least-squares solution for w.
@@ -164,12 +171,13 @@ def ls_solve(A, b):
 
 
 def ls_affine(X, Xm):
-    # Least-squares fitting of an affine transformation.
-    # Input:
-    # X - Points in the fixed image
-    # Xm - Corresponding points in the moving image
-    # Output:
-    # T - affine transformation in homogeneous form.
+    """Least-squares fitting of an affine transformation.
+    Input:
+    X - Points in the fixed image
+    Xm - Corresponding points in the moving image
+    Output:
+    T - affine transformation in homogeneous form.
+    """
 
     A = np.transpose(Xm)
 
@@ -196,12 +204,13 @@ def ls_affine(X, Xm):
 
 
 def correlation(I, J):
-    # Compute the normalized cross-correlation between two images.
-    # Input:
-    # I, J - input images
-    # Output:
-    # CC - normalized cross-correlation
-    # it's always good to do some parameter checks
+    """Compute the normalized cross-correlation between two images.
+    Input:
+    I, J - input images
+    Output:
+    CC - normalized cross-correlation
+    it's always good to do some parameter checks
+    """
 
     if I.shape != J.shape:
         raise AssertionError("The inputs must be the same size.")
@@ -228,14 +237,15 @@ def correlation(I, J):
 
 
 def joint_histogram(I, J, num_bins=16, minmax_range=None):
-    # Compute the joint histogram of two signals.
-    # Input:
-    # I, J - input images
-    # num_bins: number of bins of the joint histogram (default: 16)
-    # range - range of the values of the signals (defaul: min and max
-    # of the inputs)
-    # Output:
-    # p - joint histogram
+    """Compute the joint histogram of two signals.
+    Input:
+    I, J - input images
+    num_bins: number of bins of the joint histogram (default: 16)
+    range - range of the values of the signals (defaul: min and max
+    of the inputs)
+    Output:
+    p - joint histogram
+    """
 
     if I.shape != J.shape:
         raise AssertionError("The inputs must be the same size.")
@@ -282,12 +292,13 @@ def joint_histogram(I, J, num_bins=16, minmax_range=None):
 
 
 def mutual_information(p):
-    # Compute the mutual information from a joint histogram.
-    # Input:
-    # p - joint histogram
-    # Output:
-    # MI - mutual information in nat units
-    # a very small positive number
+    """Compute the mutual information from a joint histogram.
+    Input:
+    p - joint histogram
+    Output:
+    MI - mutual information in nat units
+    a very small positive number
+    """
 
     EPSILON = 10e-10
 
@@ -318,13 +329,14 @@ def mutual_information(p):
 
 
 def mutual_information_e(p):
-    # Compute the mutual information from a joint histogram.
-    # Alternative implementation via computation of entropy.
-    # Input:
-    # p - joint histogram
-    # Output:
-    # MI - mutual information in nat units
-    # a very small positive number
+    """Compute the mutual information from a joint histogram.
+    Alternative implementation via computation of entropy.
+    Input:
+    p - joint histogram
+    Output:
+    MI - mutual information in nat units
+    a very small positive number
+    """
 
     EPSILON = 10e-10
 
@@ -357,13 +369,14 @@ def mutual_information_e(p):
 
 
 def ngradient(fun, x, h=1e-3):
-    # Computes the derivative of a function with numerical differentiation.
-    # Input:
-    # fun - function for which the gradient is computed
-    # x - vector of parameter values at which to compute the gradient
-    # h - a small positive number used in the finite difference formula
-    # Output:
-    # g - vector of partial derivatives (gradient) of fun
+    """Computes the derivative of a function with numerical differentiation.
+    Input:
+    fun - function for which the gradient is computed
+    x - vector of parameter values at which to compute the gradient
+    h - a small positive number used in the finite difference formula
+    Output:
+    g - vector of partial derivatives (gradient) of fun
+    """
 
     g = np.zeros_like(x)
 
@@ -371,32 +384,37 @@ def ngradient(fun, x, h=1e-3):
     # TODO: Implement the  computation of the partial derivatives of
     # the function at x with numerical differentiation.
     # g[k] should store the partial derivative w.r.t. the k-th parameter
+    
+    for k in range(len(x)):
+        g[k] = (fun(x[k] + h/2) - fun(x[k] - h/2))/h
+    
     #------------------------------------------------------------------#
 
     return g
 
 
 def rigid_corr(I, Im, x, return_transform=True):
-    # Computes normalized cross-correlation between a fixed and
-    # a moving image transformed with a rigid transformation.
-    # Input:
-    # I - fixed image
-    # Im - moving image
-    # x - parameters of the rigid transform: the first element
-    #     is the rotation angle and the remaining two elements
-    #     are the translation
-    # return_transform: Flag for controlling the return values
-    # Output:
-    # C - normalized cross-correlation between I and T(Im)
-    # Im_t - transformed moving image T(Im)
-    # Th - transformation matrix (only returned if return_transform=True)
+    """Computes normalized cross-correlation between a fixed and
+    a moving image transformed with a rigid transformation.
+    Input:
+    I - fixed image
+    Im - moving image
+    x - parameters of the rigid transform: the first element
+        is the rotation angle and the remaining two elements
+        are the translation
+    return_transform: Flag for controlling the return values
+    Output:
+    C - normalized cross-correlation between I and T(Im)
+    Im_t - transformed moving image T(Im)
+    Th - transformation matrix (only returned if return_transform=True)
+    """
 
     SCALING = 100
 
     # the first element is the rotation angle
     T = rotate(x[0])
 
-    # the remaining two element are the translation
+    # the remaining two elements are the translation
     #
     # the gradient ascent/descent method work best when all parameters
     # of the function have approximately the same range of values
@@ -421,27 +439,34 @@ def rigid_corr(I, Im, x, return_transform=True):
 
 
 def affine_corr(I, Im, x, return_transform=True):
-    # Computes normalized cross-corrleation between a fixed and
-    # a moving image transformed with an affine transformation.
-    # Input:
-    # I - fixed image
-    # Im - moving image
-    # x - parameters of the rigid transform: the first element
-    #     is the roation angle, the second and third are the
-    #     scaling parameters, the fourth and fifth are the
-    #     shearing parameters and the remaining two elements
-    #     are the translation
-    # return_transform: Flag for controlling the return values
-    # Output:
-    # C - normalized cross-correlation between I and T(Im)
-    # Im_t - transformed moving image T(Im)
-    # Th - transformation matrix (only returned if return_transform=True)
+    """Computes normalized cross-correlation between a fixed and
+    a moving image transformed with an affine transformation.
+    Input:
+    I - fixed image
+    Im - moving image
+    x - parameters of the rigid transform: the first element
+        is the roation angle, the second and third are the
+        scaling parameters, the fourth and fifth are the
+        shearing parameters and the remaining two elements
+        are the translation
+    return_transform: Flag for controlling the return values
+    Output:
+    C - normalized cross-correlation between I and T(Im)
+    Im_t - transformed moving image T(Im)
+    Th - transformation matrix (only returned if return_transform=True)
+    """
     
     NUM_BINS = 64
     SCALING = 100
 
     #------------------------------------------------------------------#
     # TODO: Implement the missing functionality
+    Th = rotate(x[0]).dot(scale(x[1], x[2])).dot(shear(x[3], x[4]))
+    Th = util.t2h(Th, x[5:7]*SCALING)
+    
+    Im_t, Xt  = np.array(image_transform(Im, Th))
+    C = correlation(I, Im_t)    
+    
     #------------------------------------------------------------------#
 
     if return_transform:
@@ -451,27 +476,36 @@ def affine_corr(I, Im, x, return_transform=True):
 
 
 def affine_mi(I, Im, x, return_transform=True):
-    # Computes mutual information between a fixed and
-    # a moving image transformed with an affine transformation.
-    # Input:
-    # I - fixed image
-    # Im - moving image
-    # x - parameters of the rigid transform: the first element
-    #     is the rotation angle, the second and third are the
-    #     scaling parameters, the fourth and fifth are the
-    #     shearing parameters and the remaining two elements
-    #     are the translation
-    # return_transform: Flag for controlling the return values
-    # Output:
-    # C - normalized cross-correlation between I and T(Im)
-    # Im_t - transformed moving image T(Im)
-    # Th - transformation matrix (only returned if return_transform=True)
+    """Computes mutual information between a fixed and
+    a moving image transformed with an affine transformation.
+    Input:
+    I - fixed image
+    Im - moving image
+    x - parameters of the rigid transform: the first element
+        is the rotation angle, the second and third are the
+        scaling parameters, the fourth and fifth are the
+        shearing parameters and the remaining two elements
+        are the translation
+    return_transform: Flag for controlling the return values
+    Output:
+    C - normalized cross-correlation between I and T(Im)
+    Im_t - transformed moving image T(Im)
+    Th - transformation matrix (only returned if return_transform=True)
+    """
 
     NUM_BINS = 64
     SCALING = 100
     
     #------------------------------------------------------------------#
     # TODO: Implement the missing functionality
+    
+    Th = rotate(x[0]).dot(scale(x[1], x[2])).dot(shear(x[3],x[4]))
+    Th = util.t2h(Th, x[5:7]*SCALING)
+
+    Im_t, Xt = np.array(image_transform(Im, Th))
+    
+    MI = mutual_information(I, Im_t)    
+    
     #------------------------------------------------------------------#
 
     if return_transform:
