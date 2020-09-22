@@ -7,11 +7,12 @@ import matplotlib.pyplot as plt
 
 
 def test_object(centered=True):
-    # Generate an F-like test object.
-    # Input:
-    # centered - set the object centroid to the origin
-    # Output:
-    # X - coordinates of the test object
+    """ Generate an F-like test object.
+    Input:
+    centered - set the object centroid to the origin
+    Output:
+    X - coordinates of the test object
+    """
 
     X = np.array([[4, 4, 4.5, 4.5, 6, 6, 4.5, 4.5, 7, 7, 4], [10, 4, 4, 7, 7, 7.5, 7.5, 9.5, 9.5, 10, 10]])
 
@@ -23,11 +24,12 @@ def test_object(centered=True):
 
 
 def c2h(X):
-    # Convert cartesian to homogeneous coordinates.
-    # Input:
-    # X - cartesian coordinates
-    # Output:
-    # Xh - homogeneous coordinates
+    """ Convert cartesian to homogeneous coordinates.
+    Input:
+    X - cartesian coordinates
+    Output:
+    Xh - homogeneous coordinates
+    """
 
     n = np.ones([1,X.shape[1]])
     Xh = np.concatenate((X,n))
@@ -36,12 +38,13 @@ def c2h(X):
 
 
 def t2h(T, t):
-    # Convert a 2D transformation matrix to homogeneous form.
-    # Input:
-    # T - 2D transformation matrix
-    # t - 2D translation vector
-    # Output:
-    # Th - homogeneous transformation matrix
+    """Convert a 2D transformation matrix to homogeneous form.
+    Input:
+    T - 2D transformation matrix
+    t - 2D translation vector
+    Output:
+    Th - homogeneous transformation matrix
+    """
 
     #------------------------------------------------------------------#
     # TODO: Implement conversion of a transformation matrix and a translation vector to homogeneous transformation matrix.
@@ -55,23 +58,25 @@ def t2h(T, t):
 
 
 def plot_object(ax, X):
-    # Plot 2D object.
-    #
-    # Input:
-    # X - coordinates of the shape
+    """Plot 2D object.
+    
+    Input:
+    X - coordinates of the shape
+    """
 
     ax.plot(X[0,:], X[1,:], linewidth=2);
 
 
 def cpselect(imagePath1, imagePath2):
-	# Pops up a matplotlib window in which to select control points on the two images given as input.
-	#
-	# Input:
-    # imagePath1 - fixed image path
-    # imagePath2 - moving image path
-    # Output:
-    # X - control points in the fixed image
-    # Xm - control points in the moving image
+	"""Pops up a matplotlib window in which to select control points on the two images given as input.
+	
+	Input:
+    imagePath1 - fixed image path
+    imagePath2 - moving image path
+    Output:
+    X - control points in the fixed image
+    Xm - control points in the moving image
+    """
 	
 	#load the images
 	image1 = plt.imread(imagePath1)
