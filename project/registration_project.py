@@ -169,11 +169,11 @@ def intensityBasedRegistration(affine=True, corr=True, iterations=250, mu=1e-3, 
     ax2.set_ylabel('Similarity (%s)' %("Correlation"*(corr) + "Mutual Information"*(1-corr)))
     ax2.grid()
 
-    #Logging steps are calculated. Cannot be done easier,
-    #as it is not guaranteed that the amount of iterations is evenly divisible by 4
-    step1 = int(iterations/4-1)
-    step2 = int(iterations/2-1)
-    step3 = int(iterations*3/4-1)
+    # #Logging steps are calculated. Cannot be done easier,
+    # #as it is not guaranteed that the amount of iterations is evenly divisible by 4
+    # step1 = int(iterations/4-1)
+    # step2 = int(iterations/2-1)
+    # step3 = int(iterations*3/4-1)
 
     #Stores start time of gradient ascent
     start_time = time()
@@ -188,15 +188,15 @@ def intensityBasedRegistration(affine=True, corr=True, iterations=250, mu=1e-3, 
         #Calls similarity function to calculate the similarity and transformed image
         S, Im_t, _ = fun(x)
 
-        #Logs time elapsed and estimated total time of the gradient ascent
+        # #Logs time elapsed and estimated total time of the gradient ascent
         print("Iteration {:d}/{:d}, {:.2f}% done".format(k+1, iterations, (k+1)/iterations * 100))
-        
-        if(k == 0 or k == step1 or k == step2 or k == step3):
-            print("Elapsed time: {:.1f} s\nEstimated time: {:.1f} s".format(
-                time()-start_time, (time()-start_time) * (iterations/(k+1))))
-            
-        elif(k+1==iterations):
-            print("Duration: {:.2f} s".format(time()-start_time))
+        # 
+        # if(k == 0 or k == step1 or k == step2 or k == step3):
+        #     print("Elapsed time: {:.1f} s\nEstimated time: {:.1f} s".format(
+        #         time()-start_time, (time()-start_time) * (iterations/(k+1))))
+        # 
+        # elif(k+1==iterations):
+        #     print("Duration: {:.2f} s".format(time()-start_time))
             
         #Updates moving image and parameters
         im2.set_data(Im_t)
@@ -215,18 +215,39 @@ def intensityBasedRegistration(affine=True, corr=True, iterations=250, mu=1e-3, 
     plt.savefig(filename)
     return S
 
-if(__name__ == "__main__"):
-    #Test example of function
-    S1_1 = intensityBasedRegistration(True, False, 250, 9e-5, '1_1', 't2')
-    S1_2 = intensityBasedRegistration(True, False, 250, 9e-5, '1_2', 't2')
-    S1_3 = intensityBasedRegistration(True, False, 250, 9e-5, '1_3', 't2')
-    S2_1 = intensityBasedRegistration(True, False, 250, 9e-5, '2_1', 't2')
-    S2_2 = intensityBasedRegistration(True, False, 250, 9e-5, '2_2', 't2')
-    S2_3 = intensityBasedRegistration(True, False, 250, 9e-5, '2_3', 't2')
-    S3_1 = intensityBasedRegistration(True, False, 250, 9e-5, '3_1', 't2')
-    S3_2 = intensityBasedRegistration(True, False, 250, 9e-5, '3_2', 't2')
-    S3_3 = intensityBasedRegistration(True, False, 250, 9e-5, '3_3', 't2')
-    # pointBasedRegistration('t1','1_2')
+if(__name__ == "__main__"):   
+
+    # Uncomment either point based registration or intensity based registration.
     
-    print(S1_1, '\n', S1_2, '\n', S1_3, '\n', S2_1, '\n', S2_2, '\n', S2_3, '\n', S3_1, '\n', S3_2, '\n', S3_3)
+    images = ('1_1', '1_2', '1_3', '2_1', '2_2', '2_3', '3_1', '3_2', '3_3')
+    t1t2 = 't2' 
+    
+    ######################################################
+    
+    # Point based registration
+    
+    # pointBasedRegistration(t1t2,images[0])
+        
+    ######################################################
+    
+    # Intensity based registration
+    
+    aff = True
+    corr = True
+    it = 250
+    mu = 9e-5
+    
+    S = []
+    for i, image in enumerate(images):
+        print("Processing image {} of {}.".format(i+1, len(images)))
+        S.append(intensityBasedRegistration(aff, corr, it, mu, image, t1t2))
+        
+    
+    # Print results
+    for j in range(len(S)):
+        print(images[j]+': '+str(S[j]))
+    
+    #######################################################
+    
+    
     
